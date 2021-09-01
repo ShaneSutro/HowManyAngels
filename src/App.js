@@ -1,6 +1,8 @@
 import angel from './angel.svg';
 import './App.css';
 
+console.log(fetch('/db').then((data) => console.log(data)))
+
 function App() {
   return (
     <div className="App">

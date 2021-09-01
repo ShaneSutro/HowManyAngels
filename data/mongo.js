@@ -4,18 +4,14 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-mongoose.connect(process.env.MONGO_DB_URI, { useNewUrlParser: true });
-
-mongoose.connection.on('connect', () => {
-  console.log('Connected to Atlas!')
-})
-
-mongoose.connection.on('error', (err) => {
-  console.log('Error:', err)
-})
-
-const db = new Schema({
+const schema = new Schema({
   count: Number,
 })
+
+mongoose.connect(process.env.MONGO_DB_URI, { useNewUrlParser: true })
+  .then(() => console.log('Connected!'))
+  .catch((err) => console.error('Err:', err));
+
+const db = mongoose.model('Data', schema);
 
 module.exports = db;
