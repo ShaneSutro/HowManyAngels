@@ -23,4 +23,7 @@ h1 {
   margin: 0;
 }
 
-
+h2 {
+  width: 80vw;
+  margin: 10px auto;
+}
