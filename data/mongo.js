@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const schema = new Schema({
+  id: Number,
   count: Number,
 })
 

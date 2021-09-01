@@ -1,7 +1,26 @@
 body {
   text-align: center;
+  font-size: medium;
   background-color: cadetblue;
   color: white;
+}
+
+img {
+  width: 80vw;
+  max-width: 300px;
+}
+
+.buttons Button {
+  margin: 10px;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
 }
 
 

@@ -3,12 +3,33 @@ const app = express();
 const path = require('path')
 const db = require('../data/mongo')
 
+app.use(express.json())
 app.use(express.static(path.resolve(__dirname, '../build')));
 
-app.use('/db', (req, res) => {
-  // db.create({ count: 0 }).then((data) => console.log(data))
-  db.find({}).then(data => console.log(data))
-  res.send({ info: 'here'})
+app.get('/db', (req, res) => {
+  db.find({})
+    .then(data => res.send(data))
+    .catch(() => res.send(500))
+})
+
+app.post('/db', (req, res) => {
+  console.log(req.body)
+  db.findOneAndUpdate({id: 1}, 
+    { $inc: { count: req.body.by}},
+    (err) => {
+      if (err) {
+        res.sendStatus(500)
+      } else {
+        res.sendStatus(201)
+      }
+    })
+})
+
+app.post('/seed', (req, res) => {
+  db.create({
+    id: 1,
+    count: 0,
+  })
 })
 
 app.listen(process.env.PORT || 3001)
