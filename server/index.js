@@ -14,7 +14,7 @@ app.get('/db', (req, res) => {
 
 app.post('/db', (req, res) => {
   console.log(req.body)
-  db.findOneAndUpdate({id: 1}, 
+  db.findOneAndUpdate({id: 1},
     { $inc: { count: req.body.by}},
     (err) => {
       if (err) {
@@ -23,13 +23,6 @@ app.post('/db', (req, res) => {
         res.sendStatus(201)
       }
     })
-})
-
-app.post('/seed', (req, res) => {
-  db.create({
-    id: 1,
-    count: 0,
-  })
 })
 
 app.listen(process.env.PORT || 3001)
